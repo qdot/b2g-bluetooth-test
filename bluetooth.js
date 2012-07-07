@@ -1,3 +1,6 @@
+/* -*- Mode: Java; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- /
+ /* vim: set shiftwidth=2 tabstop=2 autoindent cindent expandtab: */
+
 window.addEventListener('DOMContentLoaded', function bluetoothSettings(evt) {
 	var gBluetoothManager = navigator.mozBluetooth;
 	var gBluetoothAdapter = null;
@@ -13,12 +16,12 @@ window.addEventListener('DOMContentLoaded', function bluetoothSettings(evt) {
         gBluetoothPowerStatus.textContent = 'No Adapter Available';
         return;
       }
-			var adapterInfo = "";
-			for (var key in gBluetoothAdapter) {
-				if ( typeof gBluetoothAdapter[key] !== "function" ) {					
-					adapterInfo += key + ": " + gBluetoothAdapter[key] + "\n";
-				}
-			}
+      var adapterInfo = "";
+      for (var key in gBluetoothAdapter) {
+        if ( typeof gBluetoothAdapter[key] !== "function" ) {					
+          adapterInfo += key + ": " + gBluetoothAdapter[key] + "\n";
+        }
+      }
 			gBluetoothDiscoverable.checked = gBluetoothAdapter.discoverable;
 			gBluetoothAdapterInfo.value = adapterInfo;
       var devices = gBluetoothAdapter.devices;
@@ -43,11 +46,11 @@ window.addEventListener('DOMContentLoaded', function bluetoothSettings(evt) {
         var propertyName = evt.property;
 				var propertyInfo = "";
 				var z = 0;
-				for (var key in gBluetoothAdapter) {
-					if ( typeof gBluetoothAdapter[key] !== "function" ) {					
-						propertyInfo += key + ": " + gBluetoothAdapter[key] + "\n";
-					}
-				}
+        for (var key in gBluetoothAdapter) {
+          if ( typeof gBluetoothAdapter[key] !== "function" ) {					
+            propertyInfo += key + ": " + gBluetoothAdapter[key] + "\n";
+          }
+        }
 				gBluetoothAdapterInfo.value = propertyInfo;
       };
 
