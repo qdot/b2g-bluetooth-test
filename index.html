@@ -1,0 +1,36 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Bluetooth Test Form</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script type="text/javascript" defer="defer" src="bluetooth.js"></script>
+	</head>
+	<body>
+		<form action="get">
+			<div class="info">
+				<div class="infocell">
+					<div class="infoheader">
+						Manager
+					</div>
+					<div class="infodata">
+						Enabled: <input type="checkbox"  id="bluetooth-enabled"/>
+					</div>
+				</div>
+			</div>
+			<div class="info">
+				<div class="infocell">
+					<div class="infoheader">
+						Adapter
+					</div>
+					<div class="infodata">
+						Discoverable: <input type="checkbox"  id="bluetooth-discoverable"/>
+					</div>
+					<div class="infodata">
+						<textarea id="bluetooth-adapter-info" rows=20 cols=80>
+						</textarea>
+					</div>
+				</div>
+			</div>
+		</form>
+	</body>
+</html>
