@@ -2,13 +2,13 @@
  /* vim: set shiftwidth=2 tabstop=2 autoindent cindent expandtab: */
 
 window.addEventListener('DOMContentLoaded', function bluetoothSettings(evt) {
-	var gBluetoothManager = navigator.mozBluetooth;
-	var gBluetoothAdapter = null;
+  var gBluetoothManager = navigator.mozBluetooth;
+  var gBluetoothAdapter = null;
   var gBluetoothPowerStatus = document.querySelector('#bluetooth-enabled');
-	var gBluetoothDiscoverable = document.querySelector('#bluetooth-discoverable');
-	var gBluetoothAdapterInfo = document.querySelector('#bluetooth-adapter-info');
+  var gBluetoothDiscoverable = document.querySelector('#bluetooth-discoverable');
+  var gBluetoothAdapterInfo = document.querySelector('#bluetooth-adapter-info');
 
-	function getAdapter() {
+  function getAdapter() {
     var req2 = gBluetoothManager.getDefaultAdapter();
     req2.onsuccess = function() {
       gBluetoothAdapter = req2.result;
@@ -18,12 +18,12 @@ window.addEventListener('DOMContentLoaded', function bluetoothSettings(evt) {
       }
       var adapterInfo = "";
       for (var key in gBluetoothAdapter) {
-        if ( typeof gBluetoothAdapter[key] !== "function" ) {					
+        if ( typeof gBluetoothAdapter[key] !== "function" ) {          
           adapterInfo += key + ": " + gBluetoothAdapter[key] + "\n";
         }
       }
-			gBluetoothDiscoverable.checked = gBluetoothAdapter.discoverable;
-			gBluetoothAdapterInfo.value = adapterInfo;
+      gBluetoothDiscoverable.checked = gBluetoothAdapter.discoverable;
+      gBluetoothAdapterInfo.value = adapterInfo;
       var devices = gBluetoothAdapter.devices;
       for(var i = 0; i < devices.length; ++i) {
         console.log(devices[i] + "\n");
@@ -44,14 +44,14 @@ window.addEventListener('DOMContentLoaded', function bluetoothSettings(evt) {
       gBluetoothAdapter.onpropertychanged = function onpropertychanged(evt) {
         console.log("Get onpropertychanged\n");
         var propertyName = evt.property;
-				var propertyInfo = "";
-				var z = 0;
+        var propertyInfo = "";
+        var z = 0;
         for (var key in gBluetoothAdapter) {
-          if ( typeof gBluetoothAdapter[key] !== "function" ) {					
+          if ( typeof gBluetoothAdapter[key] !== "function" ) {          
             propertyInfo += key + ": " + gBluetoothAdapter[key] + "\n";
           }
         }
-				gBluetoothAdapterInfo.value = propertyInfo;
+        gBluetoothAdapterInfo.value = propertyInfo;
       };
 
       gBluetoothAdapter.ondevicefound = function ondevicefound(evt) {
@@ -78,37 +78,37 @@ window.addEventListener('DOMContentLoaded', function bluetoothSettings(evt) {
       console.log(req2.error.name);
     };
   }
-	
-	function changeDiscoverable() {
+  
+  function changeDiscoverable() {
     var req = gBluetoothAdapter.setDiscoverable(this.checked);
 
     req.onsuccess = function bt_discoverableSuccess() {
       if (gBluetoothManager.enabled) {
-				console.log("Discoverable!");
+        console.log("Discoverable!");
       } else {
-				console.log("Not Discoverable!");
+        console.log("Not Discoverable!");
       }
     };
-	}
-	
-	function changeBT() {
+  }
+  
+  function changeBT() {
     var req = gBluetoothManager.setEnabled(this.checked);
 
     req.onsuccess = function bt_enabledSuccess() {
       if (gBluetoothManager.enabled) {
-				console.log("Enabled!");
-				getAdapter();
+        console.log("Enabled!");
+        getAdapter();
       } else {
-				console.log("Disabled!");
-				gBluetoothAdapter = null;
+        console.log("Disabled!");
+        gBluetoothAdapter = null;
       }
     };
   };
-	
-	gBluetoothPowerStatus.checked = gBluetoothManager.enabled;
-	if(gBluetoothManager.enabled) {
-		getAdapter();
-	}
-	gBluetoothPowerStatus.onchange = changeBT;
-	gBluetoothDiscoverable.onchange = changeDiscoverable;
+  
+  gBluetoothPowerStatus.checked = gBluetoothManager.enabled;
+  if(gBluetoothManager.enabled) {
+    getAdapter();
+  }
+  gBluetoothPowerStatus.onchange = changeBT;
+  gBluetoothDiscoverable.onchange = changeDiscoverable;
 });
